@@ -4,6 +4,7 @@ import {
   PASSWORD_RESET_REQUEST_TEMPLATE,
   PASSWORD_RESET_SUCCESS_TEMPLATE,
   VERIFICATION_EMAIL_TEMPLATE,
+  WELCOME_EMAIL_TEMPLATE,
 } from "./mailer.templates.js";
 
 export const transporter = nodemailer.createTransport(MAILER_CONFIG);
@@ -37,8 +38,11 @@ export const sendVerificationEmail = async (email, verificationCode) => {
 export const sendWelcomeEmail = async (email, name) => {
   const mailOptions = {
     to: email,
-    subject: "Welcome to Our Service!",
-    html: `<p>Hello ${name},</p><p>Welcome to our service! We are glad to have you.</p>`,
+    subject: `Welcome ${name} to Our Service!`,
+    html: WELCOME_EMAIL_TEMPLATE.replace("{name}", name).replace(
+      "{email}",
+      email
+    ),
   };
   return sendMail(mailOptions);
 };
