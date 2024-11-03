@@ -31,15 +31,20 @@ About This Course:
 ### Setup .env file
 
 ```bash
-MONGO_URI=your_mongo_uri
-PORT=5000
-JWT_SECRET=your_secret_key
+PORT=8080
+
+MONGO_URI=mongodb://root:123456@localhost:27017/mern-auth?authSource=admin
+
+FRONTEND_URI=http://localhost:5173
+
+JWT_SECRET=gen_uuid_online
+
 NODE_ENV=development
 
-MAILTRAP_TOKEN=your_mailtrap_token
-MAILTRAP_ENDPOINT=https://send.api.mailtrap.io/
-
-CLIENT_URL= http://localhost:5173
+MAIL_USER=your_mail@gmail.com
+MAIL_PASS=your_pass
+MAIL_HOST=your_host
+MAIL_PORT=your_port
 ```
 
 ### Run this app locally
