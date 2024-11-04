@@ -1,62 +1,51 @@
-// import { createBrowserRouter, Navigate } from "react-router-dom";
-// import ProtectedRoute from "./components/ProtectedRoute";
-// import RedirectAuthenticatedUser from "./components/RedirectAuthenticatedUser";
-// import DashboardPage from "./pages/DashboardPage";
-// import SignUpPage from "./pages/SignUpPage";
-// import LoginPage from "./pages/LoginPage";
-// import EmailVerificationPage from "./pages/EmailVerificationPage";
-// import ForgotPasswordPage from "./pages/ForgotPasswordPage";
-// import ResetPasswordPage from "./pages/ResetPasswordPage";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import SignInPage from "../pages/SignInPage";
+import SignUpPage from "../pages/SignUpPage";
+import DashboardPage from "../pages/DashboardPage";
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: (
-//       <ProtectedRoute>
-//         <DashboardPage />
-//       </ProtectedRoute>
-//     ),
-//   },
-//   {
-//     path: "/signup",
-//     element: (
-//       <RedirectAuthenticatedUser>
-//         <SignUpPage />
-//       </RedirectAuthenticatedUser>
-//     ),
-//   },
-//   {
-//     path: "/login",
-//     element: (
-//       <RedirectAuthenticatedUser>
-//         <LoginPage />
-//       </RedirectAuthenticatedUser>
-//     ),
-//   },
-//   {
-//     path: "/verify-email",
-//     element: <EmailVerificationPage />,
-//   },
-//   {
-//     path: "/forgot-password",
-//     element: (
-//       <RedirectAuthenticatedUser>
-//         <ForgotPasswordPage />
-//       </RedirectAuthenticatedUser>
-//     ),
-//   },
-//   {
-//     path: "/reset-password/:token",
-//     element: (
-//       <RedirectAuthenticatedUser>
-//         <ResetPasswordPage />
-//       </RedirectAuthenticatedUser>
-//     ),
-//   },
-//   {
-//     path: "*",
-//     element: <Navigate to="/" replace />,
-//   },
-// ]);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <DashboardPage />,
+    // <ProtectedRoute>
+    // </ProtectedRoute>
+  },
+  {
+    path: "/sign-up",
+    element: <SignUpPage />,
+    // <RedirectAuthenticatedUser>
+    // </RedirectAuthenticatedUser>
+  },
+  {
+    path: "/sign-in",
+    element: <SignInPage />,
+    // <RedirectAuthenticatedUser>
+    // </RedirectAuthenticatedUser>
+  },
+  //   {
+  //     path: "/verify-email",
+  //     element: <EmailVerificationPage />,
+  //   },
+  //   {
+  //     path: "/forgot-password",
+  //     element: (
+  //       <RedirectAuthenticatedUser>
+  //         <ForgotPasswordPage />
+  //       </RedirectAuthenticatedUser>
+  //     ),
+  //   },
+  //   {
+  //     path: "/reset-password/:token",
+  //     element: (
+  //       <RedirectAuthenticatedUser>
+  //         <ResetPasswordPage />
+  //       </RedirectAuthenticatedUser>
+  //     ),
+  //   },
+  {
+    path: "*",
+    element: <Navigate to="/" replace />,
+  },
+]);
 
-// export default router;
+export default router;

@@ -1,5 +1,7 @@
 import { Toaster } from "react-hot-toast";
+import { RouterProvider } from "react-router-dom";
 import FloatingShape from "./components/FloatingShape";
+import router from "./route/router.route";
 
 function App() {
   return (
@@ -28,7 +30,7 @@ function App() {
         left="-10%"
         delay={2}
       />
-
+      <RouterProvider router={router} />
       <Toaster />
     </div>
   );
