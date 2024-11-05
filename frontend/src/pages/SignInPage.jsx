@@ -9,11 +9,11 @@ const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, isLoading, error } = useAuthStore();
+  const { signIn, isLoading, error } = useAuthStore();
 
-  const handleLogin = async (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
-    await login(email, password);
+    await signIn(email, password);
   };
 
   return (
@@ -27,7 +27,7 @@ const SignInPage = () => {
         <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text">
           Welcome Back
         </h2>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSignIn}>
           <Input
             icon={Mail}
             type="email"
@@ -64,7 +64,7 @@ const SignInPage = () => {
             {isLoading ? (
               <Loader className="w-6 h-6 animate-spin  mx-auto" />
             ) : (
-              "Login"
+              "Sign In"
             )}
           </motion.button>
         </form>
