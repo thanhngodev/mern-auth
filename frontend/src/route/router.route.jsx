@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
 import DashboardPage from "../pages/DashboardPage";
+import EmailVerificationPage from "../pages/EmailVerificationPage";
 
 const router = createBrowserRouter([
   {
@@ -22,10 +23,10 @@ const router = createBrowserRouter([
     // <RedirectAuthenticatedUser>
     // </RedirectAuthenticatedUser>
   },
-  //   {
-  //     path: "/verify-email",
-  //     element: <EmailVerificationPage />,
-  //   },
+    {
+      path: "/verify-email",
+      element: <EmailVerificationPage />,
+    },
   //   {
   //     path: "/forgot-password",
   //     element: (
