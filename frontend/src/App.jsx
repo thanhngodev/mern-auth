@@ -2,8 +2,19 @@ import { Toaster } from "react-hot-toast";
 import { RouterProvider } from "react-router-dom";
 import FloatingShape from "./components/FloatingShape";
 import router from "./route/router.route";
+import { useAuthStore } from "./store/authStore";
+import { useEffect } from "react";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
+  const { isCheckingAuth, checkAuth } = useAuthStore();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  if (isCheckingAuth) return <LoadingSpinner />;
+  console.log("import.meta.env.MODE: ", import.meta.env);
   return (
     <div
       className="min-h-screen bg-gradient-to-br

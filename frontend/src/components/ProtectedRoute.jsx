@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
   }
   console.log(children);
 
-  return <>ProtectedRoute</>;
+  return children;
 };
 
 export default ProtectedRoute;

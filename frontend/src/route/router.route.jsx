@@ -5,49 +5,66 @@ import DashboardPage from "../pages/DashboardPage";
 import EmailVerificationPage from "../pages/EmailVerificationPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import ResetPasswordPage from "../pages/ResetPasswordPage";
+import ProtectedRoute from "../components/ProtectedRoute";
+import RedirectAuthenticatedUser from "../components/RedirectAuthenticatedUser";
+
+export const ROUTER_URL = {
+  DASHBOARD: "/",
+  SIGN_UP: "/sign-up",
+  SIGN_IN: "/sign-in",
+  VERIFY_EMAIL: "/verify-email",
+  FORGOT_PASSWORD: "/forgot-password",
+  RESET_PASSWORD: "/reset-password/:token",
+};
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <DashboardPage />,
-    // <ProtectedRoute>
-    // </ProtectedRoute>
-  },
-  {
-    path: "/sign-up",
-    element: <SignUpPage />,
-    // <RedirectAuthenticatedUser>
-    // </RedirectAuthenticatedUser>
-  },
-  {
-    path: "/sign-in",
-    element: <SignInPage />,
-    // <RedirectAuthenticatedUser>
-    // </RedirectAuthenticatedUser>
-  },
-  {
-    path: "/verify-email",
-    element: <EmailVerificationPage />,
-  },
-  {
-    path: "/forgot-password",
+    path: ROUTER_URL.DASHBOARD,
     element: (
-      // <RedirectAuthenticatedUser>
-      // </RedirectAuthenticatedUser>
-      <ForgotPasswordPage />
+      <ProtectedRoute>
+        <DashboardPage />
+      </ProtectedRoute>
     ),
   },
   {
-    path: "/reset-password/:token",
+    path: ROUTER_URL.SIGN_UP,
     element: (
-      // <RedirectAuthenticatedUser>
-      // </RedirectAuthenticatedUser>
-      <ResetPasswordPage />
+      <RedirectAuthenticatedUser>
+        <SignUpPage />
+      </RedirectAuthenticatedUser>
+    ),
+  },
+  {
+    path: ROUTER_URL.SIGN_IN,
+    element: (
+      <RedirectAuthenticatedUser>
+        <SignInPage />
+      </RedirectAuthenticatedUser>
+    ),
+  },
+  {
+    path: ROUTER_URL.VERIFY_EMAIL,
+    element: <EmailVerificationPage />,
+  },
+  {
+    path: ROUTER_URL.FORGOT_PASSWORD,
+    element: (
+      <RedirectAuthenticatedUser>
+        <ForgotPasswordPage />
+      </RedirectAuthenticatedUser>
+    ),
+  },
+  {
+    path: ROUTER_URL.RESET_PASSWORD,
+    element: (
+      <RedirectAuthenticatedUser>
+        <ResetPasswordPage />
+      </RedirectAuthenticatedUser>
     ),
   },
   {
     path: "*",
-    element: <Navigate to="/" replace />,
+    element: <Navigate to={ROUTER_URL.DASHBOARD} replace />,
   },
 ]);
 
