@@ -73,7 +73,7 @@ const SignInPage = () => {
       <div className="px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center">
         <p className="text-sm text-gray-400">
           Don&apos;t have an account?{" "}
-          <Link to={ROUTER_URL.SIGN_IN} className="text-green-400 hover:underline">
+          <Link to={ROUTER_URL.SIGN_UP} className="text-green-400 hover:underline">
             Sign up
           </Link>
         </p>
