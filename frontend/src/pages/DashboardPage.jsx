@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
-// import { formatDate } from "../utils/date";
+import { useAuthStore } from "../store/authStore";
+import { formatDate } from "../utils/date";
 
 const DashboardPage = () => {
+  const { user, signOut } = useAuthStore();
+  const handleSignOut = () => {
+    signOut();
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -24,10 +30,8 @@ const DashboardPage = () => {
           <h3 className="text-xl font-semibold text-green-400 mb-3">
             Profile Information
           </h3>
-          {/* <p className="text-gray-300">Name: {user.name}</p>
-          <p className="text-gray-300">Email: {user.email}</p> */}
-          <p className="text-gray-300">Name: Thanhngo</p>
-          <p className="text-gray-300">Email: thanhngo@gmail.com</p>
+          <p className="text-gray-300">Name: {user.name}</p>
+          <p className="text-gray-300">Email: {user.email}</p>
         </motion.div>
         <motion.div
           className="p-4 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700"
@@ -40,16 +44,16 @@ const DashboardPage = () => {
           </h3>
           <p className="text-gray-300">
             <span className="font-bold">Joined: </span>
-            {/* {new Date(user.createdAt).toLocaleDateString("en-US", {
+            {new Date(user.createdAt).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
               day: "numeric",
-            })} */}
+            })}
           </p>
           <p className="text-gray-300">
             <span className="font-bold">Last Login: </span>
 
-            {/* {formatDate(user.lastLogin)} */}
+            {formatDate(user.lastLogin)}
           </p>
         </motion.div>
       </div>
@@ -63,10 +67,10 @@ const DashboardPage = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          // onClick={handleLogout}
+          onClick={handleSignOut}
           className="w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900"
         >
-          Logout
+          Sign Out
         </motion.button>
       </motion.div>
     </motion.div>

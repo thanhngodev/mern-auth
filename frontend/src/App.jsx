@@ -14,7 +14,6 @@ function App() {
   }, [checkAuth]);
 
   if (isCheckingAuth) return <LoadingSpinner />;
-  console.log("import.meta.env.MODE: ", import.meta.env);
   return (
     <div
       className="min-h-screen bg-gradient-to-br

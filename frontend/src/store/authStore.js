@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import axios from "axios";
-import { API_URL } from "./apiUrl.const";
+import { API_URL_ROUTE } from "./apiUrl.const";
 
 axios.defaults.withCredentials = true;
 
@@ -15,7 +15,7 @@ export const useAuthStore = create((set) => ({
   signUp: async (email, password, name) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axios.post(`${API_URL}/sign-up`, {
+      const response = await axios.post(API_URL_ROUTE.SIGN_UP, {
         email,
         password,
         name,
@@ -34,10 +34,48 @@ export const useAuthStore = create((set) => ({
     }
   },
 
+  signIn: async (email, password) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axios.post(API_URL_ROUTE.SIGN_IN, {
+        email,
+        password,
+      });
+      set({
+        isAuthenticated: true,
+        user: response.data.user,
+        error: null,
+        isLoading: false,
+      });
+    } catch (error) {
+      set({
+        error: error.response?.data?.message || "Error logging in",
+        isLoading: false,
+      });
+      throw error;
+    }
+  },
+
+  signOut: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      await axios.post(API_URL_ROUTE.SIGN_OUT);
+      set({
+        user: null,
+        isAuthenticated: false,
+        error: null,
+        isLoading: false,
+      });
+    } catch (error) {
+      set({ error: "Error logging out", isLoading: false });
+      throw error;
+    }
+  },
+
   verifyEmail: async (code) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axios.post(`${API_URL}/verify-email`, { code });
+      const response = await axios.post(API_URL_ROUTE.VERIFY_EMAIL, { code });
       set({
         user: response.data.user,
         isAuthenticated: true,
@@ -56,7 +94,7 @@ export const useAuthStore = create((set) => ({
   checkAuth: async () => {
     set({ isCheckingAuth: true, error: null });
     try {
-      const response = await axios.get(`${API_URL}/check-auth`);
+      const response = await axios.get(API_URL_ROUTE.CHECK_AUTH);
       set({
         user: response.data.user,
         isAuthenticated: true,

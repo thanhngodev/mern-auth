@@ -135,7 +135,7 @@ export const signIn = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log("Error in login ", error);
+    console.log("Error in sign out ", error);
     res.status(400).json({ success: false, message: error.message });
   }
 };

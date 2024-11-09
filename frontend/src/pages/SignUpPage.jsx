@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuthStore } from "../store/authStore";
 import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
+import { ROUTER_URL } from "../route/router.route";
 
 const SignUpPage = () => {
   const [name, setName] = useState("");
@@ -18,7 +19,7 @@ const SignUpPage = () => {
     e.preventDefault();
     try {
       await signUp(email, password, name);
-      navigate("/verify-email");
+      navigate(ROUTER_URL.VERIFY_EMAIL);
     } catch (error) {
       console.log(error);
     }
@@ -79,7 +80,7 @@ const SignUpPage = () => {
       <div className="px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center">
         <p className="text-sm text-gray-400">
           Already have an account?{" "}
-          <Link to={"/sign-in"} className="text-green-400 hover:underline">
+          <Link to={ROUTER_URL.SIGN_IN} className="text-green-400 hover:underline">
             Sign In
           </Link>
         </p>

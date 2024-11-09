@@ -4,6 +4,7 @@ import { useAuthStore } from "../store/authStore";
 import Input from "../components/Input";
 import { ArrowLeft, Loader, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ROUTER_URL } from "../route/router.route";
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState("");
@@ -75,7 +76,7 @@ const ForgotPasswordPage = () => {
 
       <div className="px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center">
         <Link
-          to={"/sign-in"}
+          to={ROUTER_URL.SIGN_IN}
           className="text-sm text-green-400 hover:underline flex items-center"
         >
           <ArrowLeft className="h-4 w-4 mr-2" /> Back to Sign In

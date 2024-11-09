@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Input from "../components/Input";
 import { Lock } from "lucide-react";
 import toast from "react-hot-toast";
+import { ROUTER_URL } from "../route/router.route";
 
 const ResetPasswordPage = () => {
   const [password, setPassword] = useState("");
@@ -28,7 +29,7 @@ const ResetPasswordPage = () => {
         "Password reset successfully, redirecting to login page..."
       );
       setTimeout(() => {
-        navigate("/login");
+        navigate(ROUTER_URL.SIGN_IN);
       }, 2000);
     } catch (error) {
       console.error(error);
