@@ -13,20 +13,13 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const __dirname = path.resolve();
 
-// Configures CORS to allow requests from FRONTEND_URI with credentials included.
-app.use(cors({ origin: process.env.FRONTEND_URI, credentials: true }));
 
-// allows us to parse incoming requests:req.body
-app.use(express.json());
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
-// allows us to parse incoming cookies
-app.use(cookieParser());
+app.use(express.json()); // allows us to parse incoming requests:req.body
+app.use(cookieParser()); // allows us to parse incoming cookies
 
 app.use("/api/auth", authRoutes);
-
-app.get("/", (req, res) => {
-  res.send("Hello World!!!");
-});
 
 // check env node
 if (process.env.NODE_ENV === "production") {
